@@ -17,7 +17,7 @@ public class LoginTest extends MITestBase {
 
         //传参调登录接口
         Response response = given().
-                params(Login.loginMap()).
+                params(Login.getLoginMap()).
                 post(url);
 
         //校验返回是否成功

@@ -60,7 +60,7 @@ public class MIBase {
     public static String getSign() {
 
         String signStr;
-        Map hashMap = Login.loginParams();//获取基本参数
+        Map hashMap = Login.getLoginBaseMap();//获取基本参数
         hashMap.put("apiSign", "a8caae40d5d94bda8ac15b1875d09834");//增加apiSign
 
         signStr = ParamRequestBuilder.param(hashMap);//生成签名
