@@ -2,6 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="D:/autotest/autotestMI">
-        <classes/>
+        <classes><class name="loginTest"></class></classes>
     </test>
 </suite>
