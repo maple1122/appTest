@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
  * @author wufeng
  * @date 2023/6/8 15:50
  */
-public class loginTest extends MITestBase {
+public class LoginTest extends MITestBase {
 
     String url = "/memberapi/api/member/doMLogin";
 

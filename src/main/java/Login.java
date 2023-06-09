@@ -1,15 +1,17 @@
 import java.util.HashMap;
 import java.util.List;
 
+import static io.restassured.RestAssured.given;
+
 /**
  * @author wufeng
  * @date 2023/6/8 15:29
  */
-public class Login {
+public class Login extends MIBase{
 
     static List<String> enclist = MIBase.env();
 
-    //登录
+    //获取登录参数
     public static HashMap loginMap() {
 
         //登录参数
@@ -19,7 +21,7 @@ public class Login {
         return map;
     }
 
-    //登录
+    //获取登录基本参数
     public static HashMap loginParams() {
 
         //基本参数（不含signature、apiSign）
@@ -34,5 +36,11 @@ public class Login {
         map.put("platform", enclist.get(7));
         map.put("deviceToken", enclist.get(8));
         return map;
+    }
+
+    //登录
+    public static void login() {
+        String url = env().get(0)+"/memberapi/api/member/doMLogin";
+        given().params(Login.loginMap()).post(url);
     }
 }
