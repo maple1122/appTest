@@ -1,4 +1,5 @@
-import io.restassured.http.ContentType;
+import base.MITestBase;
+import business.ContentList;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 

@@ -1,3 +1,5 @@
+package business;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -21,4 +23,5 @@ public class ContentList {
             System.out.println("第" + num + "条稿件信息：" + jO.toString());
         }
     }
+
 }

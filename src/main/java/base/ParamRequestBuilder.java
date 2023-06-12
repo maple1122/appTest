@@ -1,3 +1,5 @@
+package base;
+
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collections;

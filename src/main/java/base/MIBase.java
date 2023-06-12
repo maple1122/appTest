@@ -1,10 +1,11 @@
+package base;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -18,6 +19,7 @@ public class MIBase {
     //获取环境配置
     public static List<String> env() {
 
+        //切换环境
 //        String envString = "envtest";//测试环境
 //        String envString = "envyanshi";//演示环境
         String envString = "envyqtest";//延庆测试环境
@@ -25,11 +27,12 @@ public class MIBase {
         Properties pro = new Properties();
         InputStream prois;
 
-        List<String> envlist = new ArrayList<>();
+        List<String> envlist = new ArrayList<>();//环境list
         try {
-            prois = new FileInputStream("application.properties");
-            pro.load(new InputStreamReader(prois, "UTF-8"));
+            prois = new FileInputStream("application.properties");//配置文件对象
+            pro.load(new InputStreamReader(prois, "UTF-8"));//加载配置文件
 
+            //获取配置文件中的参数
             String domain = (String) pro.getProperty(envString + ".domain");
             String phone = (String) pro.getProperty(envString + ".phone");
             String password = (String) pro.getProperty(envString + ".password");
@@ -39,7 +42,9 @@ public class MIBase {
             String versionName = (String) pro.getProperty(envString + ".versionName");
             String platfrom = (String) pro.getProperty(envString + ".platfrom");
             String deviceToken = (String) pro.getProperty(envString + ".deviceToken");
+            String userId = (String) pro.getProperty(envString + ".userId");
 
+            //添加到环境list中
             envlist.add(domain);
             envlist.add(phone);
             envlist.add(password);
@@ -49,6 +54,7 @@ public class MIBase {
             envlist.add(versionName);
             envlist.add(platfrom);
             envlist.add(deviceToken);
+            envlist.add(userId);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,15 +62,6 @@ public class MIBase {
         return envlist;
     }
 
-    //获取客户端签名
-    public static String getSign() {
 
-        String signStr;
-        Map hashMap = Login.getLoginBaseMap();//获取基本参数
-        hashMap.put("apiSign", "a8caae40d5d94bda8ac15b1875d09834");//增加apiSign
-
-        signStr = ParamRequestBuilder.param(hashMap);//生成签名
-        return signStr;
-    }
 
 }

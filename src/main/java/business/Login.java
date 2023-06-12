@@ -1,3 +1,7 @@
+package business;
+
+import base.GetSignature;
+import base.MIBase;
 import io.restassured.response.Response;
 
 import java.util.HashMap;
@@ -12,15 +16,14 @@ import static io.restassured.RestAssured.given;
 public class Login extends MIBase {
 
     static List<String> enclist = MIBase.env();
-    static String url = env().get(0) + "/memberapi/api/member/doMLogin";
+    static String url = MIBase.env().get(0) + "/memberapi/api/member/doMLogin";
 
     //获取登录参数
     public static HashMap getLoginMap() {
 
         //登录参数
         HashMap map = getLoginBaseMap();//基本参数
-        map.put("signature", MIBase.getSign());//增加签名参数
-
+        map.put("signature", GetSignature.getSign(map));//增加签名参数
         return map;
     }
 
@@ -43,15 +46,15 @@ public class Login extends MIBase {
 
     //客户端用户登录
     public static void login() {
-        given().params(Login.getLoginMap()).post(url);//调用登录接口
+        given().params(getLoginMap()).post(url);//调用登录接口
     }
 
     //客户端用户登录，有返回值
-    public static String getLoginJson() {
+    public static Response getLoginValue() {
 
-        Response response = given().params(Login.getLoginMap()).post(url);//调用登录接口
-        String result = response.asString();//登录返回转成字符串
-        return result;//返回登录结果
+        Response response = given().params(getLoginMap()).post(url);//调用登录接口
+
+        return response;//返回登录结果
     }
 
 
