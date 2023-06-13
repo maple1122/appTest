@@ -1,4 +1,4 @@
-package business;
+package personal;
 
 import base.GetSignature;
 import base.MIBase;
@@ -57,5 +57,36 @@ public class Login extends MIBase {
         return response;//返回登录结果
     }
 
+//    //退出
+//    public static Response signOut(){
+//
+//    }
+
+    //获取登录参数
+    public static HashMap getSignOutMap() {
+
+        //登录参数
+        HashMap map = getLoginBaseMap();//基本参数
+        map.put("signature", GetSignature.getSign(map));//增加签名参数
+        return map;
+    }
+
+    //获取登录基本参数
+//    public static HashMap getSignOutBaseMap() {
+//
+//        //基本参数（不含signature、apiSign）
+//        HashMap map = new HashMap();
+//        map.put("currentTimeMillis", String.valueOf(System.currentTimeMillis()));
+////        map.put("phone", enclist.get(1));
+////        map.put("password", enclist.get(2));
+//        map.put("appId", enclist.get(3));
+//        map.put("siteId", enclist.get(4));
+//        map.put("un",un);
+//        map.put("modelType", enclist.get(5));
+//        map.put("versionName", enclist.get(6));
+//        map.put("userId",enclist.get(9));
+//        map.put("platform", enclist.get(7));
+//        return map;
+//    }
 
 }

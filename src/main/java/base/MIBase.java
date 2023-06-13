@@ -1,5 +1,8 @@
 package base;
 
+import io.restassured.RestAssured;
+import org.testng.annotations.BeforeTest;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +18,13 @@ import java.util.Properties;
 
 public class MIBase {
 
+    //域名初始化
+    @BeforeTest
+    public void setUP() {
+        RestAssured.baseURI = env().get(0);
+        RestAssured.port = 80;
+        RestAssured.basePath = "";
+    }
 
     //获取环境配置
     public static List<String> env() {

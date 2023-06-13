@@ -1,5 +1,7 @@
+package personal;
+
 import base.MITestBase;
-import business.Login;
+import personal.Login;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
