@@ -1,6 +1,8 @@
 package base;
 
 import io.restassured.RestAssured;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import java.io.FileInputStream;
@@ -19,7 +21,7 @@ import java.util.Properties;
 public class MIBase {
 
     //域名初始化
-    @BeforeTest
+    @BeforeMethod
     public void setUP() {
         RestAssured.baseURI = env().get(0);
         RestAssured.port = 80;

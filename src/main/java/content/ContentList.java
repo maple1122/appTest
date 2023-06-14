@@ -33,7 +33,7 @@ public class ContentList extends MIBase {
 
     //获取自动化测试稿件
     public static JSONObject getTestData() {
-        String url = "/json/channel/test2/list.json";
+        String url =env().get(0) +  "/json/channel/test2/list.json";
         Response response = given().get(url);
         return getTestData(response);
     }

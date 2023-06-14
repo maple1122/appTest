@@ -14,15 +14,19 @@ import static io.restassured.RestAssured.given;
  * @author wufeng
  * @date 2023/6/13 9:31
  */
-public class ContentDetail extends MIBase{
+public class ContentDetail extends MIBase {
 
     static List<String> enclist = env();
 
     //获取稿件详情
     public static Response getActicleDetail() {
-        String url = MIBase.env().get(0) +"/contentapi/api/content/getContentDetail";
-        Response response=given().params(getActicleDetailMap()).post(url);
-        System.out.println("自动化测试稿件信息："+response.asString());
+        String url = "/contentapi/api/content/getContentDetail";
+        HashMap map = getActicleDetailMap();
+        Response response = null;
+        if (map != null) {
+            response = given().params(map).get(url);
+            System.out.println("自动化测试稿件信息：" + response.asString());
+        } else System.out.println("没有找到自动化测试稿件！");
         return response;
     }
 
@@ -32,7 +36,8 @@ public class ContentDetail extends MIBase{
     //获取稿件详情参数map
     public static HashMap getActicleDetailMap() {
         HashMap map = getActicleDetailBaseMap();
-        map.put("signature", GetSignature.getSign(map));
+        if (map != null)
+            map.put("signature", GetSignature.getSign(map));
         return map;
     }
 
