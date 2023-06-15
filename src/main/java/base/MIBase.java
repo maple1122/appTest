@@ -1,9 +1,7 @@
 package base;
 
 import io.restassured.RestAssured;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -55,6 +53,7 @@ public class MIBase {
             String platfrom = (String) pro.getProperty(envString + ".platfrom");
             String deviceToken = (String) pro.getProperty(envString + ".deviceToken");
             String userId = (String) pro.getProperty(envString + ".userId");
+            String mediaId = (String) pro.getProperty(envString + ".mediaId");
 
             //添加到环境list中
             envlist.add(domain);
@@ -67,13 +66,12 @@ public class MIBase {
             envlist.add(platfrom);
             envlist.add(deviceToken);
             envlist.add(userId);
+            envlist.add(mediaId);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
         return envlist;
     }
-
-
 
 }
