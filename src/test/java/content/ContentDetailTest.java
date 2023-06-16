@@ -1,12 +1,8 @@
 package content;
 
 import base.MITestBase;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 
 /**
  * @author wufeng
@@ -14,8 +10,28 @@ import static io.restassured.http.ContentType.JSON;
  */
 public class ContentDetailTest extends MITestBase {
 
-    @Test
+    @Test//获取稿件详情
     public void testGetActicleDetail() {
         ContentDetail.getActicleDetail();
+    }
+
+    @Test//点赞
+    public void testPraise(){
+        ContentDetail.praise();
+    }
+
+    @Test//取消点赞
+    public void testCancellPraise(){
+        ContentDetail.canCellPraise();
+    }
+
+    @Test//收藏
+    public void testCollect(){
+        ContentDetail.collect();
+    }
+
+    @Test//取消收藏
+    public void testCancellCollect(){
+        ContentDetail.canCellCollect();
     }
 }

@@ -6,8 +6,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.restassured.response.Response;
 
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
 
 /**
@@ -16,7 +14,7 @@ import static io.restassured.RestAssured.given;
  */
 public class ContentList extends MIBase {
 
-    static List<String> enclist = env();
+    static String url = "/json/channel/test2/list.json";
 
     //获取数据列表，分条显示
     public static void getDatas(Response response) {
@@ -33,9 +31,26 @@ public class ContentList extends MIBase {
 
     //获取自动化测试稿件
     public static JSONObject getTestData() {
-        String url =env().get(0) +  "/json/channel/test2/list.json";
         Response response = given().get(url);
         return getTestData(response);
+    }
+
+    //按照类型获取稿件
+    public static JSONObject getActicleByType(String type) {
+        Response response = given().get(url);
+        String result = response.asString();
+        JSONObject jsonObj = JSON.parseObject(result);//整个json对象
+        JSONArray array = jsonObj.getJSONArray("list");//获取返回结果中的稿件list
+        JSONObject ob = null;
+        for (int i = 0; i < array.size(); i++) {//循环遍历list下的每个稿件
+            ob = array.getJSONObject(i);//每个稿件数据作为json对象
+            if (ob.get("contentType").toString().equals(type)) {
+                JSONObject ob2 = ob.getJSONObject("data");//获取每个稿件中的data数据
+                if (ob2.containsKey("linkType"))
+                    if (ob2.get("linkType").toString().equals("0")) break;
+            }
+        }
+        return ob;
     }
 
     //获取自动化测试稿件
@@ -59,5 +74,4 @@ public class ContentList extends MIBase {
         else System.out.println("没找到自动化测试稿件");//没找到打印信息
         return ob2;
     }
-
 }

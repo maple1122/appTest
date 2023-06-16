@@ -17,4 +17,9 @@ public class MediaContentTest extends MITestBase {
         MediaContent.getMediaContent(13);//拍拍
         MediaContent.getMediaContent(2);
     }
+
+    @Test
+    public void testGetQuestions(){
+        MediaContent.getQuestions();
+    }
 }

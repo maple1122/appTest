@@ -20,15 +20,8 @@ public class MediaContent extends MIBase {
     public static void getMediaContent(int contentType) {
         String url = "/mpapi/api/mp/content/getContentListByType";
         HashMap map = null;
-//        ContentType[] types = ContentType.values();
-//        for (ContentType type : types) {
-//            if (type.index == contentType) {
-        //content=11，图文；13，拍拍
         if (contentType == 11 || contentType == 13)
             map = getContentMap(String.valueOf(contentType));
-//                break;
-//            }
-//        }
         if (map != null) {
             Response response = given().params(map).get(url);
             System.out.println(response.asString());
@@ -49,16 +42,39 @@ public class MediaContent extends MIBase {
         } else System.out.println("contentType=" + contentType + "，不是有效的媒体号稿件类型");
     }
 
+    //问答列表
+    public static void getQuestions() {
+        String url = "/mpapi/api/mp/question/queryQuestionByMedia";
+        HashMap map = getQuestionsMap();
+        if (map != null) {
+            Response response = given().params(map).get(url);
+            System.out.println(response.asString());
+        }
+    }
+
+    //获取列表参数
     public static HashMap getContentMap(String contentType) {
-        HashMap map = getContentBaseMap(contentType);
+        HashMap map = getContentBaseMap();
         map.put("pageSize", "10");
         map.put("pageNum", "1");
         map.put("isOwner", "0");
+        map.put("contentTypes", contentType);
         map.put("signature", GetSignature.getSign(map));
         return map;
     }
 
-    public static HashMap getContentBaseMap(String contentType) {
+    //获取列表参数
+    public static HashMap getQuestionsMap() {
+        HashMap map = getContentBaseMap();
+        map.put("hasChild", "1");
+        map.put("pageSize", "10");
+        map.put("pageNum", "1");
+        map.put("signature", GetSignature.getSign(map));
+        return map;
+    }
+
+    //获取列表基本参数
+    public static HashMap getContentBaseMap() {
         HashMap map = new HashMap();
 
         map.put("modelType", enclist.get(5));
@@ -69,7 +85,6 @@ public class MediaContent extends MIBase {
         map.put("currentTimeMillis", String.valueOf(System.currentTimeMillis()));
         map.put("appId", enclist.get(3));
         map.put("siteId", enclist.get(4));
-        map.put("contentTypes", contentType);
         return map;
     }
 }
