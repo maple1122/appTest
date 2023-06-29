@@ -47,7 +47,7 @@ public class ContentList extends MIBase {
             if (ob.get("contentType").toString().equals(type)) {
                 JSONObject ob2 = ob.getJSONObject("data");//获取每个稿件中的data数据
                 if (ob2.containsKey("linkType"))
-                    if (ob2.get("linkType").toString().equals("0")) break;
+                    if (ob2.get("linkType").toString().equals("0")) break;//返回非外链稿件
             }
         }
         return ob;

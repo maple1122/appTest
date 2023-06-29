@@ -54,6 +54,8 @@ public class MIBase {
             String deviceToken = (String) pro.getProperty(envString + ".deviceToken");
             String userId = (String) pro.getProperty(envString + ".userId");
             String mediaId = (String) pro.getProperty(envString + ".mediaId");
+            String channelId = (String) pro.getProperty(envString + ".channelId");
+            String programId = (String) pro.getProperty(envString + ".programId");
 
             //添加到环境list中
             envlist.add(domain);
@@ -67,6 +69,8 @@ public class MIBase {
             envlist.add(deviceToken);
             envlist.add(userId);
             envlist.add(mediaId);
+            envlist.add(channelId);
+            envlist.add(programId);
 
         } catch (IOException e) {
             e.printStackTrace();

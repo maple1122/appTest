@@ -20,7 +20,7 @@ import static io.restassured.RestAssured.given;
 public class Comment extends MIBase {
     static List<String> enclist = env();
 
-    //获取评论列表
+    //获取稿件评论列表
     public static Response getCommentList() {
         String url = "/contentapi/api/content/getFirstCommentList";
         HashMap map = getCommentListMap();
@@ -56,11 +56,15 @@ public class Comment extends MIBase {
                     post(url);
             System.out.println("回复评论返回：" + response.asString());
         } else System.out.println("没有自动化测试稿件评论可回复");
-
     }
 
-    public void getReplyCommentList() {
-
+    public static void getMyCommentList() {
+        String url = "/contentapi/api/content/getMyCommentList";
+        HashMap map = getMyCommentListMap();
+        if (map != null) {
+            Response response = given().params(map).get(url);
+            System.out.println("个人评论列表：" + response.asString());
+        } else System.out.println("map为空");
     }
 
     //评论列表参数map
@@ -158,6 +162,26 @@ public class Comment extends MIBase {
             map.put("userId", enclist.get(9));
             map.put("platform", enclist.get(7));
         }
+        return map;
+    }
+
+    protected static HashMap getMyCommentListMap() {
+        HashMap map = getMyCommentListBaseMap();
+        map.put("signature", GetSignature.getSign(map));
+        return map;
+    }
+
+    protected static HashMap getMyCommentListBaseMap() {
+        HashMap map = new HashMap();
+        map.put("currentTimeMillis", String.valueOf(System.currentTimeMillis()));
+        map.put("appId", enclist.get(3));
+        map.put("siteId", enclist.get(4));
+        map.put("pageSize", "10");
+        map.put("modelType", enclist.get(5));
+        map.put("versionName", enclist.get(6));
+        map.put("userId", enclist.get(9));
+        map.put("pageNum", "1");
+        map.put("platform", enclist.get(7));
         return map;
     }
 }

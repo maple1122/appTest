@@ -3,8 +3,6 @@ package content;
 import base.MITestBase;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 /**
  * @author wufeng
  * @date 2023/6/13 11:21
@@ -30,4 +28,10 @@ public class CommentTest extends MITestBase {
     public void testGetReplyCommentList() {
 
     }
+
+    @Test
+    public void testGetMyCommentList() {
+        Comment.getMyCommentList();
+    }
+
 }

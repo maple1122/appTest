@@ -88,7 +88,7 @@ public class ContentDetail extends MIBase {
     public static HashMap getPraiseMap(){
         HashMap map=getActicleDetailBaseMap();
         if (map!=null){
-            JSONObject acticleDetail = ContentList.getActicleByType("1");
+            JSONObject acticleDetail = ContentList.getActicleByType("1");//获取类型是文稿的
             String id = acticleDetail.get("id").toString();
             String contentType = acticleDetail.get("contentType").toString();
             map.put("id", id);
