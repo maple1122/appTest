@@ -4,6 +4,7 @@ import base.GetSignature;
 import base.MIBase;
 import io.restassured.response.Response;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class PersonalInfo extends MIBase {
         String url = "/memberapi/api/member/updateInfo";
         HashMap map = getUpdateInfoMap();
         Response response = given().params(map).post(url);
-        System.out.println(response.asString());
+        System.out.println("更新用户信息返回："+response.asString());
     }
 
     public static void updateHeadImg() {
@@ -37,7 +38,11 @@ public class PersonalInfo extends MIBase {
                 multiPart("versionName", enclist.get(6)).
                 multiPart("userId", enclist.get(9)).
                 multiPart("platform", enclist.get(7)).
-                multiPart("fileType", "jpg").post(url);
+                multiPart("fileType", "jpg").
+                multiPart("signature", signature).
+                multiPart("file", new File("headImgTest.jpg")).
+                post(url);
+        System.out.println("更新用户头像返回：" + response.asString());
     }
 
     private static HashMap getUpdateInfoMap() {
@@ -55,7 +60,7 @@ public class PersonalInfo extends MIBase {
         map.put("versionName", enclist.get(6));
         map.put("userId", enclist.get(9));
         map.put("platform", enclist.get(7));
-        map.put("violationsUserName", 2);
+        map.put("violationsUserName", "2");
         map.put("currentTimeMillis", String.valueOf(System.currentTimeMillis()));
         map.put("appId", enclist.get(3));
         map.put("siteId", enclist.get(4));
