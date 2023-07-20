@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
  */
 public class CreateQATest extends MITestBase {
 
-    @Test
+    @Test(priority = 1)
     public void testCreateQA() {
         CreateQA.createQA();
     }

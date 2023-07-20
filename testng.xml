@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="D:/autotest/autotestMI">
-        <classes><class name="personal.LoginTest"></class></classes>
+<suite name="All Test Suite" parallel="false">
+    <test name="新闻">
+        <classes >
+            <class name="content.ContentListTest"></class>
+            <class name="content.ContentDetailTest"></class>
+            <class name="content.CommentTest"></class>
+            <class name="content.TVChannelTest"></class>
+        </classes>
     </test>
+    <test name="个人中心">
+        <classes >
+            <class name="personal.LoginTest"></class>
+            <class name="personal.PersonalInfoTest"></class>
+        </classes>
+    </test>
+    <test name="媒体号">
+        <classes >
+            <class name="media.MediaInfoTest"></class>
+            <class name="media.MediaContentTest"></class>
+            <class name="media.MediaFollowTest"></class>
+        </classes>
+    </test>
+    <test name="问政">
+        <classes >
+            <class name="politic.CreateQATest"></class>
+            <class name="politic.QADetailTest"></class>
+            <class name="politic.QAListTest"></class>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
 </suite>

@@ -19,6 +19,7 @@ public class PersonalInfo extends MIBase {
     static List<String> enclist = env();
     static String currentTimeMillis = String.valueOf(System.currentTimeMillis());
 
+    //更新用户昵称
     public static void updateInfo() {
         String url = "/memberapi/api/member/updateInfo";
         HashMap map = getUpdateInfoMap();
@@ -26,6 +27,7 @@ public class PersonalInfo extends MIBase {
         System.out.println("更新用户信息返回："+response.asString());
     }
 
+    //更新用户头像
     public static void updateHeadImg() {
         String url = "/memberapi/api/member/uploadFile";
         String signature = GetSignature.getSign(getUpdateHeadImgBaseMap());
@@ -45,12 +47,14 @@ public class PersonalInfo extends MIBase {
         System.out.println("更新用户头像返回：" + response.asString());
     }
 
+    //更改用户信息参数
     private static HashMap getUpdateInfoMap() {
         HashMap map = getUpdateInfoBaseMap();
         map.put("signature", GetSignature.getSign(map));
         return map;
     }
 
+    //更改用户信息基础参数
     private static HashMap getUpdateInfoBaseMap() {
         String username = "autoTest";
         HashMap map = new HashMap();
@@ -70,14 +74,8 @@ public class PersonalInfo extends MIBase {
         return map;
     }
 
-    private static HashMap getUpdateHeadImgMap() {
-        HashMap map = getUpdateHeadImgBaseMap();
-        map.put("signature", GetSignature.getSign(map));
-        return map;
-    }
-
+    //更新头像基础参数
     private static HashMap getUpdateHeadImgBaseMap() {
-        String username = "autoTest";
         HashMap map = new HashMap();
         map.put("violationsHead", "2");
         map.put("currentTimeMillis", currentTimeMillis);

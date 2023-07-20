@@ -94,6 +94,7 @@ public class ContentDetail extends MIBase {
             map.put("id", id);
             map.put("contentType", contentType);
             map.put("signature", GetSignature.getSign(map));
+            System.out.println("map>>>"+map.toString());
         }
         return map;
     }
