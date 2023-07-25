@@ -78,7 +78,7 @@
                             <value>org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter</value>
                         </property>
                     </properties>
-                    <forkMode>always</forkMode>
+<!--                    <forkMode>always</forkMode>-->
                 </configuration>
             </plugin>
             <plugin>
