@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<?xml version="1.0" encoding="utf-8" ?>
 <suite name="All Test Suite" parallel="false">
     <test name="新闻">
-        <classes >
+        <classes>
             <class name="content.ContentListTest"></class>
             <class name="content.ContentDetailTest"></class>
             <class name="content.CommentTest"></class>
@@ -10,20 +9,20 @@
         </classes>
     </test>
     <test name="个人中心">
-        <classes >
+        <classes>
             <class name="personal.LoginTest"></class>
             <class name="personal.PersonalInfoTest"></class>
         </classes>
     </test>
     <test name="媒体号">
-        <classes >
+        <classes>
             <class name="media.MediaInfoTest"></class>
             <class name="media.MediaContentTest"></class>
             <class name="media.MediaFollowTest"></class>
         </classes>
     </test>
     <test name="问政">
-        <classes >
+        <classes>
             <class name="politic.CreateQATest"></class>
             <class name="politic.QADetailTest"></class>
             <class name="politic.QAListTest"></class>

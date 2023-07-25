@@ -2,6 +2,7 @@ package politic;
 
 import base.MITestBase;
 import org.testng.annotations.Test;
+import politic.CreateQA;
 
 
 /**
