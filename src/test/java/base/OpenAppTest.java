@@ -1,7 +1,11 @@
 package base;
 
 import io.restassured.response.Response;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -26,5 +30,16 @@ public class OpenAppTest extends MITestBase {
                 statusCode(200).
                 contentType(JSON);
         System.out.println(response.asString());
+    }
+
+    @BeforeMethod
+    public void testStart(Method method) {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>> Test case: "
+                + method.getName());
+    }
+
+    @AfterMethod
+    public void testEnd(Method method) {
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<< Test End!\n");
     }
 }
